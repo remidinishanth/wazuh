@@ -86,7 +86,7 @@ void Monitord()
                 /* Connect to the message queue */
                 if ((mond.a_queue = StartMQ(DEFAULTQUEUE, WRITE, 1)) > 0) {
                     /* Send startup message */
-                    snprintf(str, OS_SIZE_1024 - 1, OS_AD_STARTED);
+                    snprintf(str, OS_SIZE_1024 - 1, INFINITE_OPENQ_ATTEMPTS);
                     if (SendMSG(mond.a_queue, str, ARGV0,
                                 LOCALFILE_MQ) < 0) {
                         mond.a_queue = -1;  // We keep trying to reconnect next time.
