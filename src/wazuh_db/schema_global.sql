@@ -31,13 +31,14 @@ CREATE TABLE IF NOT EXISTS agent (
     status TEXT NOT NULL CHECK (status IN ('empty', 'pending', 'updated')) DEFAULT 'empty',
     fim_offset INTEGER NOT NULL DEFAULT 0,
     reg_offset INTEGER NOT NULL DEFAULT 0,
-    `group` TEXT DEFAULT 'default'
+    `group` TEXT DEFAULT 'default',
+    sync_status INTEGER
 );
 
 CREATE INDEX IF NOT EXISTS agent_name ON agent (name);
 CREATE INDEX IF NOT EXISTS agent_ip ON agent (ip);
 
-INSERT INTO agent (id, ip, register_ip, name, date_add, last_keepalive, `group`) VALUES (0, '127.0.0.1', '127.0.0.1', 'localhost', strftime('%s','now'), 253402300799, NULL);
+INSERT INTO agent (id, ip, register_ip, name, date_add, last_keepalive, `group`, sync_status) VALUES (0, '127.0.0.1', '127.0.0.1', 'localhost', strftime('%s','now'), 253402300799, NULL, 0);
 
 CREATE TABLE IF NOT EXISTS info (
     key TEXT PRIMARY KEY,
